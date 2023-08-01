@@ -25,3 +25,9 @@ Then (/^the user selects (.*) atribute with value (.*) in dropdown option$/,asyn
 Then (/^the user selects (.*) index from dropdown$/, async (index:number) => {
   await ($('//*[@id = "dropdown"]')).selectByIndex(index);
 });
+
+Then (/^the user verifies if checkbox with html tag "([^"]*)?" as (.*) at position (.*) is selected$/,async (tag:string, atribute:string, index:string) => {
+  // await $(`//*[@${tag} = ${atribute}]/input[${index}]`).isSelected();
+  let isChecked = await $(`//*[@${tag} = ${atribute}]/input[${index}]`).isSelected();
+  chai.expect(isChecked).to.be.true;
+});
