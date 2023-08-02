@@ -77,3 +77,9 @@ Then (/^the user switches to frame with name (.*)$/,async (id:string) => {
 Then (/^the user switches to parent frame$/,async () => {
   await browser.switchToParentFrame();
 });
+
+Then (/^the user selects and deletes all the text$/,async () => {
+  await browser.keys(['Meta', 'A']);
+  await browser.pause(1000);
+  await browser.keys('Delete');
+})
