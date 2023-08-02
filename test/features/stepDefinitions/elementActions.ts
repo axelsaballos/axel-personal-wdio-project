@@ -55,3 +55,11 @@ Then (/^the user gets and send text from alert$/,async () => {
   await browser.acceptAlert();
 });
 
+Then (/^the user upload a file$/,async () => {
+  await $ ('//*[@id = "file-upload"]').addValue(`${process.cwd()}/data/fileUpload/demo.txt`);
+});
+
+Then (/^the user clicks on element with html tag "([^"]*)?" as (.*) at index "([^"]*)?"$/,async (tag:string, attribute:string, index:string) => {
+  await $ (`(//*[@${tag} = ${attribute}])[${index}]`).click();
+  await browser.pause(3000);
+});
