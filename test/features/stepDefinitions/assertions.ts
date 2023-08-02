@@ -31,3 +31,18 @@ Then (/^the user verifies if checkbox with html tag "([^"]*)?" as (.*) at positi
   let isChecked = await $(`//*[@${tag} = ${atribute}]/input[${index}]`).isSelected();
   chai.expect(isChecked).to.be.true;
 });
+
+Then (/^the user validates if alert is opened$/,async () => {
+  if (await browser.isAlertOpen()) {
+    await browser.acceptAlert();
+  }
+});
+
+Then (/^the user validates and "([^"]*)?" the confirmation pop up$/,async (attribute:string) => {
+  if (await browser.isAlertOpen() && attribute !== 'Ok') {
+    await browser.dismissAlert();
+  } else {
+    await browser.acceptAlert();
+  }
+})
+

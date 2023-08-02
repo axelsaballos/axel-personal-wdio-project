@@ -1,7 +1,7 @@
 import { Given, When, Then } from "@wdio/cucumber-framework";
 import chai from "chai";
 
-Then(/^The user clicks on text "([^"]*)?")$/, async (text: string) => {
+Then(/^The user clicks on text (.*)$/, async (text: string) => {
   let element = await $(`//*[text() = ${text}]`);
   await element.click();
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
@@ -48,3 +48,10 @@ Then(/^the user switches to window "([^"]*)?"$/, async (name: string) => {
     }
   }
 });
+
+Then (/^the user gets and send text from alert$/,async () => {
+  let alertTxt = await browser.getAlertText();
+  await browser.sendAlertText('Hi');
+  await browser.acceptAlert();
+});
+

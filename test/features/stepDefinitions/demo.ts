@@ -35,3 +35,9 @@ When(/^Perform web interactions$/, async () => {
   await element.setValue("123");
   await browser.pause(3000);
 });
+
+Given(/^An auth web is opened$/, async () => {
+  await browser.url("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+  await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
+  await browser.maximizeWindow();
+});
