@@ -1,6 +1,6 @@
 Feature: Web Interaction with Upload File
 
-  @demo1
+  @demo
   Scenario Outline: Demo web Interaction With Upload File
     Given A web is opened
     Then The user clicks on text "File Upload"

@@ -63,3 +63,17 @@ Then (/^the user clicks on element with html tag "([^"]*)?" as (.*) at index "([
   await $ (`(//*[@${tag} = ${attribute}])[${index}]`).click();
   await browser.pause(3000);
 });
+
+Then (/^the user enters text "([^"]*)?" in element with html tag "([^"]*)?" as (.*)$/,async (text:string, tag:string, attribute:string) => {
+  await $(`//*[@${tag} = ${attribute}]`).setValue(text);
+  await browser.pause(3000);
+});
+
+Then (/^the user switches to frame with name (.*)$/,async (id:string) => {
+  let name = await $(`//*[@id = ${id}]`)
+  await browser.switchToFrame(name);
+});
+
+Then (/^the user switches to parent frame$/,async () => {
+  await browser.switchToParentFrame();
+});
