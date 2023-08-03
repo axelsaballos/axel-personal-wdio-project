@@ -1,6 +1,6 @@
 Feature: Web Interaction with Key Press
 
-  @demo1
+  @demo
   Scenario Outline: Demo web Interaction With Key Press
     Given A web is opened
     Then The user clicks on text "Frames"

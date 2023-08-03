@@ -82,4 +82,8 @@ Then (/^the user selects and deletes all the text$/,async () => {
   await browser.keys(['Meta', 'A']);
   await browser.pause(1000);
   await browser.keys('Delete');
+});
+
+Then (/^the user scrolls into text (.*)$/,async (text:string) => {
+  await $(`//*[text() = ${text}]`).scrollIntoView();
 })
