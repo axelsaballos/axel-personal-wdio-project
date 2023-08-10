@@ -45,3 +45,22 @@ Then(/^the user validates and "([^"]*)?" the confirmation pop up$/, async (attri
     await browser.acceptAlert();
   }
 });
+
+Then(/^the user should list "([^"]*)?"$/, async (products: string) => {
+  let elementArray = await $$(`//*[@class = 'inventory_item_name']`);
+  if (!elementArray) throw Error(`Invalid product count: ${products}`);
+  chai.expect(elementArray.length).to.equal(parseInt(products));
+});
+
+Then(/^the user validates all products have valid prices$/, async () => {
+  let elementArray = await $$('//*[@class = "inventory_item_price"]');
+  let priceCountArr = [];
+  for (let i = 0; i < elementArray.length; i++) {
+    let price = await elementArray[i].getText();
+    priceCountArr.push(price);
+  }
+
+  let convertedPrice = priceCountArr.map((ele) => parseFloat(ele.replace("$", "")));
+  let invalidPrice = convertedPrice.filter((ele) => ele <= 0);
+  chai.expect(invalidPrice).to.equal(0);
+});

@@ -6,6 +6,11 @@ Given(/^Google page is opened$/, async function () {
   await browser.pause(1000);
 });
 
+Given(/^Sauce demo page is opened$/, async function () {
+  await browser.url("https://www.saucedemo.com");
+  await browser.pause(1000);
+});
+
 Given(/^Amazon page is opened$/, async function () {
   await browser.url("https://www.amazon.com");
   await browser.pause(1000);
